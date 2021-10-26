@@ -15,6 +15,11 @@ public class GuardarCliente {
 		
 		try {
 			Clientes cliente1 = new Clientes("Juan","Beca","Calle 65 N 16-28");
+			miSession.beginTransaction();
+			miSession.save(cliente1);
+			miSession.getTransaction().commit();
+			System.out.println("Resgistro insertado correctamente en BBDD");
+			miSession.close();
 		}finally {
 			myFactory.close();
 		}
