@@ -14,11 +14,26 @@ public class GuardarCliente {
 		Session miSession = myFactory.openSession();
 		
 		try {
-			Clientes cliente1 = new Clientes("Juan","Beca","Calle 65 N 16-28");
+			
+			Clientes cliente1 = new Clientes("Sandra","Suarez","Carrera 9 N 15-08");
 			miSession.beginTransaction();
 			miSession.save(cliente1);
 			miSession.getTransaction().commit();
 			System.out.println("Resgistro insertado correctamente en BBDD");
+			
+			//Lectura de registros 
+			
+			miSession.beginTransaction();
+			System.out.println("Lectura de registro con Id: " + cliente1.getId());
+
+			Clientes clienteInsertado = miSession.get(Clientes.class, cliente1.getId());
+			
+			System.out.println("Registro: " + clienteInsertado );
+			
+			miSession.getTransaction().commit();
+			
+			miSession.close();
+			
 			miSession.close();
 		}finally {
 			myFactory.close();
